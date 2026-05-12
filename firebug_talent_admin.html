@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIREBUG 愛用品リサーチ 管理画面</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg2: #111118;
+  --bg3: #1a1a24;
+  --panel: #16161f;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --accent: #f0c040;
+  --accent2: #e8a820;
+  --blue: #4a9eff;
+  --blue2: #2d7be8;
+  --text: #f0f0f5;
+  --text2: #9090a8;
+  --text3: #606078;
+  --green: #4adf9a;
+  --red: #ff6b6b;
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 24px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+}
+.logo-img { height: 28px; width: auto; display: block; }
+.logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--accent);
+  letter-spacing: -0.3px;
+}
+.logo-text span {
+  color: var(--text2);
+  font-weight: 400;
+  font-size: 12px;
+  margin-left: 8px;
+}
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.data-badge {
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(74,158,255,0.1);
+  color: var(--blue);
+  border: 1px solid rgba(74,158,255,0.2);
+  display: none;
+}
+.data-badge.active { display: inline-block; }
+
+/* ── Layout ── */
+.layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: calc(100vh - 61px);
+}
+.sidebar {
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 22px 18px;
+  overflow-y: auto;
+  position: sticky;
+  top: 61px;
+  height: calc(100vh - 61px);
+}
+.main {
+  padding: 26px 30px 60px;
+  overflow-y: auto;
+}
+
+/* ── Sidebar sections ── */
+.sb-section { margin-bottom: 22px; }
+.sb-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sb-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Form controls ── */
+.form-row { margin-bottom: 10px; }
+.form-row label {
+  font-size: 11px;
+  color: var(--text2);
+  display: block;
+  margin-bottom: 5px;
+}
+input[type=text], select {
+  width: 100%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  transition: border-color 0.15s;
+  outline: none;
+}
+input[type=text]:focus, select:focus { border-color: var(--blue); }
+select option { background: var(--bg3); color: var(--text); }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.btn-primary { background: var(--accent); color: #0a0a0f; }
+.btn-primary:hover { background: var(--accent2); }
+.btn-secondary { background: var(--bg3); color: var(--text2); border: 1px solid var(--border); }
+.btn-secondary:hover { border-color: var(--border2); color: var(--text); }
+.btn-sm { padding: 7px 13px; font-size: 12px; }
+.btn-full { width: 100%; justify-content: center; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Load box (sidebar) ── */
+.load-box {
+  background: rgba(240,192,64,0.03);
+  border: 2px dashed rgba(240,192,64,0.3);
+  border-radius: var(--radius-lg);
+  padding: 24px 18px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.load-box-icon { font-size: 28px; margin-bottom: 10px; }
+.load-box h3 { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+.load-box p { font-size: 11px; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
+
+/* ── Status ── */
+.status-bar {
+  font-size: 11.5px;
+  padding: 9px 12px;
+  border-radius: var(--radius);
+  margin-top: 10px;
+}
+.status-ok { background: rgba(74,223,154,0.1); color: var(--green); border: 1px solid rgba(74,223,154,0.2); }
+.status-err { background: rgba(255,107,107,0.1); color: var(--red); border: 1px solid rgba(255,107,107,0.2); }
+.status-info { background: rgba(74,158,255,0.1); color: var(--blue); border: 1px solid rgba(74,158,255,0.2); }
+
+/* ── Spinner ── */
+.spin {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(10,10,15,0.3);
+  border-top-color: #0a0a0f;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  vertical-align: middle;
+}
+.spin-blue { border: 2px solid rgba(74,158,255,0.3); border-top-color: var(--blue); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Main: Title ── */
+.page-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.page-title h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+.page-title .count {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  color: var(--text2);
+}
+.page-title .count strong { color: var(--accent); font-weight: 700; }
+
+/* ── Filter strip ── */
+.filter-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.fchip {
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(74,158,255,0.1);
+  color: var(--blue);
+  border: 1px solid rgba(74,158,255,0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fchip .x {
+  cursor: pointer;
+  font-size: 10px;
+  opacity: 0.7;
+}
+.fchip .x:hover { opacity: 1; }
+
+/* ── Cards ── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+.t-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: all 0.15s;
+  animation: fadeUp 0.3s ease both;
+}
+.t-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-1px);
+}
+.t-card.expanded {
+  border-color: var(--accent);
+  background: linear-gradient(180deg, rgba(240,192,64,0.04), var(--panel) 50%);
+}
+.t-card-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.t-card-body { flex: 1; min-width: 0; }
+.t-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.t-office {
+  font-size: 12px;
+  color: var(--text2);
+}
+.t-meta {
+  font-size: 10.5px;
+  color: var(--text3);
+  font-family: 'Space Grotesk', sans-serif;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.t-meta-icon { font-size: 10px; }
+.t-toggle {
+  flex-shrink: 0;
+  font-size: 18px;
+  color: var(--text3);
+  transition: transform 0.2s;
+  line-height: 1;
+  margin-top: 2px;
+}
+.t-card.expanded .t-toggle { transform: rotate(90deg); color: var(--accent); }
+.t-preview-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+.t-preview-tag {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bg3);
+  color: var(--text2);
+  border: 1px solid var(--border);
+}
+
+/* ── Card detail (expanded) ── */
+.t-detail {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.t-card.expanded .t-detail { display: block; }
+.detail-cat {
+  margin-bottom: 14px;
+}
+.detail-cat-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.detail-cat-title::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 11px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.detail-item {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: 12px;
+  line-height: 1.65;
+  border-bottom: 1px dashed var(--border);
+}
+.detail-item:last-child { border-bottom: none; }
+.detail-item .k { color: var(--text2); }
+.detail-item .v {
+  color: var(--text);
+  word-break: break-word;
+}
+.detail-item .v.empty {
+  color: var(--text3);
+  font-style: italic;
+}
+.detail-item .v mark {
+  background: rgba(240,192,64,0.25);
+  color: var(--accent);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* ── Empty / loading ── */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text2);
+}
+.empty-icon { font-size: 40px; margin-bottom: 14px; }
+.empty-state h3 { font-size: 15px; font-weight: 500; margin-bottom: 6px; color: var(--text); }
+.empty-state p { font-size: 12.5px; color: var(--text3); line-height: 1.9; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ── Search box ── */
+.search-box {
+  position: relative;
+}
+.search-box input {
+  padding-left: 32px;
+}
+.search-box::before {
+  content: '🔍';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 880px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+  .main { padding: 20px 16px 60px; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <img class="logo-img" src="https://storage.googleapis.com/production-os-assets/assets/b93cf2a7-61cb-426c-8ecb-3f0b96623481" alt="FIREBUG">
+  <div class="logo-text">愛用品リサーチ <span>管理画面</span></div>
+  <div class="header-right">
+    <div class="data-badge" id="dataBadge">● データ読込済</div>
+  </div>
+</header>
+
+<div class="layout">
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar">
+  <!-- データ読み込み -->
+  <div class="load-box">
+    <div class="load-box-icon">📥</div>
+    <h3>スプレッドシート連携</h3>
+    <p>GAS経由でスプレッドシートから<br>最新の回答データを取得します</p>
+    <button class="btn btn-primary btn-full" id="btnLoad" onclick="loadData()">データを読み込む</button>
+  </div>
+  <div id="loadStatus"></div>
+
+  <!-- 検索・絞り込み -->
+  <div class="sb-section">
+    <div class="sb-label">タレント名で検索</div>
+    <div class="form-row search-box">
+      <input type="text" id="f_talent_name" placeholder="例：山田太郎" oninput="applyFilter()">
+    </div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-label">カテゴリで絞り込み</div>
+    <div class="form-row">
+      <select id="f_category" onchange="applyFilter()">
+        <option value="">指定なし（全カテゴリ）</option>
+        <optgroup label="ビューティー・ヘルスケア">
+          <option>歯磨き系</option><option>スキンケア</option><option>ベースメイク</option><option>コスメ</option>
+          <option>日焼け止め</option><option>薬・漢方</option><option>目薬</option><option>美顔器</option><option>サプリ</option>
+        </optgroup>
+        <optgroup label="フード・ドリンク">
+          <option>ドリンク</option><option>調味料</option><option>冷凍食品</option><option>カップ麺</option>
+          <option>お菓子（洋菓子系）</option><option>お菓子（和菓子系）</option>
+        </optgroup>
+        <optgroup label="日用品・ランドリー">
+          <option>洗剤</option><option>柔軟剤</option><option>シャンプー・トリートメント</option>
+          <option>ドライヤー</option><option>ヘアアイロン</option>
+        </optgroup>
+        <optgroup label="EC・サービス">
+          <option>よく使うECサイト</option><option>ふるさと納税</option><option>使わないものを売るサイト</option>
+          <option>旅行サイト</option><option>クレジットカード</option><option>よく使うアプリ</option>
+        </optgroup>
+        <optgroup label="家電">
+          <option>テレビ</option><option>掃除機</option><option>冷蔵庫</option><option>洗濯機</option>
+          <option>乾燥機</option><option>電子レンジ</option><option>オーブン</option><option>エアコン</option>
+          <option>体重計</option><option>炊飯器</option><option>コーヒーメーカー</option>
+          <option>ウォーターサーバー</option><option>お掃除ロボット</option><option>空気清浄機</option>
+          <option>食洗機</option><option>IH</option><option>その他家電</option>
+        </optgroup>
+        <optgroup label="ライフスタイル">
+          <option>文具</option><option>おすすめしたい便利グッズ</option><option>子供用の製品</option>
+          <option>よく行く（好きな）スーパー</option><option>よく行く（好きな）コンビニ</option>
+          <option>よく行く（好きな）レジャースポット</option>
+        </optgroup>
+        <optgroup label="推し活">
+          <option>推し活（スポーツ）</option><option>推し活（ミュージシャン、アイドル）</option>
+          <option>推し活（キャラクター）</option>
+        </optgroup>
+        <optgroup label="その他">
+          <option>今後やりたい仕事</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="sb-section">
+    <div class="sb-label">キーワード検索</div>
+    <div class="form-row">
+      <input type="text" id="f_keyword" placeholder="商品名・ブランド名など" oninput="applyFilter()">
+      <div style="font-size:10px;color:var(--text3);margin-top:4px;line-height:1.6;">
+        全回答からフリーワードで検索<br>（カテゴリ指定時はそのカテゴリ内のみ）
+      </div>
+    </div>
+  </div>
+
+  <div class="sb-section">
+    <button class="btn btn-secondary btn-full btn-sm" onclick="resetFilter()">条件をリセット</button>
+  </div>
+</aside>
+
+<!-- ===== MAIN ===== -->
+<main class="main">
+  <div class="page-title">
+    <h1>回答一覧</h1>
+    <div class="count" id="resultCount">— 件</div>
+  </div>
+
+  <div class="filter-strip" id="filterStrip"></div>
+
+  <div id="cardWrap">
+    <div class="empty-state">
+      <div class="empty-icon">📋</div>
+      <h3>まずはデータを読み込んでください</h3>
+      <p>左の「データを読み込む」ボタンを押すと<br>スプレッドシートの回答データが表示されます</p>
+    </div>
+  </div>
+</main>
+
+</div>
+
+<script>
+// ===== GAS URL =====
+const GAS_URL = "https://script.google.com/a/macros/firebug.jp/s/AKfycbz1G2xMDYrA8MRCc9r3I_DNLZMMCYNQ58oql4ds_TPEe9FCQxfuGZttx2M7Z8qUidEn/exec";
+
+// ===== カテゴリ定義 =====
+const CATEGORIES = [
+  { name: 'ビューティー・ヘルスケア', items: ['歯磨き系','スキンケア','ベースメイク','コスメ','日焼け止め','薬・漢方','目薬','美顔器','サプリ'] },
+  { name: 'フード・ドリンク', items: ['ドリンク','調味料','冷凍食品','カップ麺','お菓子（洋菓子系）','お菓子（和菓子系）'] },
+  { name: '日用品・ランドリー', items: ['洗剤','柔軟剤','シャンプー・トリートメント','ドライヤー','ヘアアイロン'] },
+  { name: 'EC・サービス', items: ['よく使うECサイト','ふるさと納税','使わないものを売るサイト','旅行サイト','クレジットカード','よく使うアプリ'] },
+  { name: '家電', items: ['テレビ','掃除機','冷蔵庫','洗濯機','乾燥機','電子レンジ','オーブン','エアコン','体重計','炊飯器','コーヒーメーカー','ウォーターサーバー','お掃除ロボット','空気清浄機','食洗機','IH','その他家電'] },
+  { name: 'ライフスタイル', items: ['文具','おすすめしたい便利グッズ','子供用の製品','よく行く（好きな）スーパー','よく行く（好きな）コンビニ','よく行く（好きな）レジャースポット'] },
+  { name: '推し活', items: ['推し活（スポーツ）','推し活（ミュージシャン、アイドル）','推し活（キャラクター）'] },
+  { name: 'その他', items: ['今後やりたい仕事'] }
+];
+
+// ===== STATE =====
+let allData = [];
+let filteredData = [];
+
+// ===== Helpers =====
+function setLoadStatus(msg, type) {
+  document.getElementById('loadStatus').innerHTML = `<div class="status-bar status-${type}">${msg}</div>`;
+}
+function clearLoadStatus() {
+  document.getElementById('loadStatus').innerHTML = '';
+}
+function escapeHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function highlight(text, keyword) {
+  if (!keyword || !text) return escapeHtml(text);
+  const safe = escapeHtml(text);
+  const safeKw = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return safe.replace(new RegExp(safeKw, 'gi'), m => `<mark>${m}</mark>`);
+}
+
+// ===== Load data =====
+async function loadData() {
+  const btn = document.getElementById('btnLoad');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span>読み込み中...';
+  setLoadStatus('スプレッドシートからデータを取得しています...', 'info');
+
+  if (GAS_URL === "ここにGASのURLを貼る" || !GAS_URL) {
+    setLoadStatus('GAS URLが未設定です。HTMLファイル上部の GAS_URL を設定してください。', 'err');
+    btn.disabled = false;
+    btn.innerHTML = 'データを読み込む';
+    return;
+  }
+
+  try {
+    const res = await fetch(GAS_URL, { method: 'GET' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+
+    if (!Array.isArray(data)) {
+      throw new Error('GASからの応答が想定形式ではありません');
+    }
+
+    allData = data;
+    document.getElementById('dataBadge').classList.add('active');
+    setLoadStatus(`✓ ${allData.length}件の回答を読み込みました`, 'ok');
+    applyFilter();
+  } catch (err) {
+    console.error(err);
+    setLoadStatus('読み込みに失敗しました：' + err.message, 'err');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '再読み込み';
+  }
+}
+
+// ===== Filter =====
+function applyFilter() {
+  const nameQ = document.getElementById('f_talent_name').value.trim().toLowerCase();
+  const cat = document.getElementById('f_category').value;
+  const kw = document.getElementById('f_keyword').value.trim().toLowerCase();
+
+  filteredData = allData.filter(row => {
+    // タレント名検索
+    if (nameQ) {
+      const name = String(row['タレント名'] || '').toLowerCase();
+      if (!name.includes(nameQ)) return false;
+    }
+
+    // カテゴリ × キーワード
+    if (cat) {
+      const val = String(row[cat] || '').toLowerCase();
+      if (!val.trim()) return false;
+      if (kw && !val.includes(kw)) return false;
+    } else if (kw) {
+      // カテゴリ未指定の場合は全項目検索
+      const found = Object.keys(row).some(k => {
+        if (k === 'タイムスタンプ') return false;
+        return String(row[k] || '').toLowerCase().includes(kw);
+      });
+      if (!found) return false;
+    }
+
+    return true;
+  });
+
+  renderCards();
+  renderFilterStrip();
+}
+
+function resetFilter() {
+  document.getElementById('f_talent_name').value = '';
+  document.getElementById('f_category').value = '';
+  document.getElementById('f_keyword').value = '';
+  applyFilter();
+}
+
+function renderFilterStrip() {
+  const nameQ = document.getElementById('f_talent_name').value.trim();
+  const cat = document.getElementById('f_category').value;
+  const kw = document.getElementById('f_keyword').value.trim();
+  const strip = document.getElementById('filterStrip');
+  const chips = [];
+  if (nameQ) chips.push(`<span class="fchip">タレント: ${escapeHtml(nameQ)} <span class="x" onclick="document.getElementById('f_talent_name').value='';applyFilter()">✕</span></span>`);
+  if (cat) chips.push(`<span class="fchip">カテゴリ: ${escapeHtml(cat)} <span class="x" onclick="document.getElementById('f_category').value='';applyFilter()">✕</span></span>`);
+  if (kw) chips.push(`<span class="fchip">キーワード: ${escapeHtml(kw)} <span class="x" onclick="document.getElementById('f_keyword').value='';applyFilter()">✕</span></span>`);
+  strip.innerHTML = chips.join('');
+}
+
+// ===== Render =====
+function renderCards() {
+  const wrap = document.getElementById('cardWrap');
+  const countEl = document.getElementById('resultCount');
+  countEl.innerHTML = `<strong>${filteredData.length}</strong> 件`;
+
+  if (allData.length === 0) {
+    wrap.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">📋</div>
+      <h3>まずはデータを読み込んでください</h3>
+      <p>左の「データを読み込む」ボタンを押すと<br>スプレッドシートの回答データが表示されます</p>
+    </div>`;
+    return;
+  }
+
+  if (filteredData.length === 0) {
+    wrap.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <h3>該当する回答が見つかりません</h3>
+      <p>検索条件を変更するか、リセットしてお試しください</p>
+    </div>`;
+    return;
+  }
+
+  const kw = document.getElementById('f_keyword').value.trim().toLowerCase();
+  const cat = document.getElementById('f_category').value;
+
+  wrap.innerHTML = `<div class="card-grid">${filteredData.map((row, idx) => renderCard(row, idx, kw, cat)).join('')}</div>`;
+}
+
+function renderCard(row, idx, kw, cat) {
+  const name = row['タレント名'] || '（名前未記入）';
+  const office = row['事務所名'] || '（事務所未記入）';
+  const ts = row['タイムスタンプ'] || '';
+
+  // プレビュータグ：データが入っているカテゴリ名を最大4つ表示
+  const filledCats = CATEGORIES.filter(c => c.items.some(it => row[it] && String(row[it]).trim()));
+  const previewTags = filledCats.slice(0, 4).map(c => `<span class="t-preview-tag">${escapeHtml(c.name)}</span>`).join('');
+  const moreCount = filledCats.length - 4;
+
+  // 詳細部分
+  const detailHtml = CATEGORIES.map(c => {
+    // カテゴリフィルタが指定されていれば、そのカテゴリのみ展開時にハイライト
+    const items = c.items.map(it => {
+      const v = row[it];
+      const hasVal = v && String(v).trim();
+      const highlighted = hasVal ? highlight(String(v), kw) : '（未記入）';
+      return `<div class="detail-item">
+        <div class="k">${escapeHtml(it)}</div>
+        <div class="v${hasVal ? '' : ' empty'}">${highlighted}</div>
+      </div>`;
+    }).join('');
+    return `<div class="detail-cat">
+      <div class="detail-cat-title">${escapeHtml(c.name)}</div>
+      ${items}
+    </div>`;
+  }).join('');
+
+  return `<div class="t-card" id="card-${idx}" onclick="toggleCard(${idx})">
+    <div class="t-card-head">
+      <div class="t-card-body">
+        <div class="t-name">${highlight(name, document.getElementById('f_talent_name').value.trim().toLowerCase())}</div>
+        <div class="t-office">${escapeHtml(office)}</div>
+        <div class="t-meta">
+          <span class="t-meta-icon">🕒</span>
+          <span>${escapeHtml(ts)}</span>
+        </div>
+        <div class="t-preview-tags">
+          ${previewTags}
+          ${moreCount > 0 ? `<span class="t-preview-tag">+${moreCount}</span>` : ''}
+        </div>
+      </div>
+      <div class="t-toggle">›</div>
+    </div>
+    <div class="t-detail" onclick="event.stopPropagation()">${detailHtml}</div>
+  </div>`;
+}
+
+function toggleCard(idx) {
+  const card = document.getElementById('card-' + idx);
+  if (card) card.classList.toggle('expanded');
+}
+</script>
+
+</body>
+</html>
