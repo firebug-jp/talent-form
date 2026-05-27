@@ -1,598 +1,745 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>FIREBUG タレント愛用品ヒアリングシート</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #0a0a0f;
-  --bg2: #111118;
-  --bg3: #1a1a24;
-  --panel: #16161f;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-  --accent: #f0c040;
-  --accent2: #e8a820;
-  --blue: #4a9eff;
-  --text: #f0f0f5;
-  --text2: #9090a8;
-  --text3: #606078;
-  --green: #4adf9a;
-  --red: #ff6b6b;
-  --radius: 10px;
-  --radius-lg: 16px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Noto Sans JP', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  -webkit-text-size-adjust: 100%;
-  line-height: 1.6;
-}
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: var(--bg2); }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タレント愛用品ヒアリングシート | FIREBUG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --bg3: #1a1a24;
+      --panel: #16161f;
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.12);
+      --accent: #f0c040;
+      --accent2: #e8a820;
+      --blue: #4a9eff;
+      --text: #f0f0f5;
+      --text2: #9090a8;
+      --text3: #606078;
+      --green: #4adf9a;
+      --red: #ff6b6b;
+      --radius: 10px;
+      --radius-lg: 16px;
+    }
 
-/* ── Header ── */
-.header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 20px;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(12px);
-}
-.logo-img {
-  height: 28px;
-  width: auto;
-  display: block;
-}
-.logo-text {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--accent);
-  letter-spacing: -0.3px;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* ── Container ── */
-.container {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 24px 18px 80px;
-}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
 
-/* ── Title ── */
-.title-block {
-  margin-bottom: 22px;
-}
-.title-block h1 {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-.title-block p {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.7;
-}
+    /* ヘッダー */
+    .header {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border2);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-/* ── Notice ── */
-.notice {
-  background: rgba(240,192,64,0.06);
-  border: 1px solid rgba(240,192,64,0.25);
-  border-radius: var(--radius-lg);
-  padding: 16px 18px;
-  margin-bottom: 24px;
-}
-.notice-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.notice-title::before {
-  content: '!';
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  background: var(--accent);
-  color: #0a0a0f;
-  border-radius: 50%;
-  font-size: 11px;
-  font-weight: 700;
-}
-.notice ul {
-  list-style: none;
-  font-size: 12.5px;
-  color: var(--text);
-  line-height: 1.85;
-}
-.notice li {
-  position: relative;
-  padding-left: 14px;
-}
-.notice li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 5px;
-  height: 5px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-.notice .ex {
-  color: var(--text2);
-  font-size: 12px;
-}
+    .header img {
+      height: 36px;
+      object-fit: contain;
+    }
 
-/* ── Section ── */
-.section {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 18px 18px 14px;
-  margin-bottom: 14px;
-}
-.section-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.section-title::before {
-  content: '';
-  display: block;
-  width: 3px;
-  height: 14px;
-  background: var(--accent);
-  border-radius: 2px;
-  flex-shrink: 0;
-}
+    .header-text h1 {
+      font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
 
-/* ── Form rows ── */
-.frow {
-  margin-bottom: 14px;
-}
-.frow:last-child {
-  margin-bottom: 4px;
-}
-label {
-  font-size: 12px;
-  color: var(--text2);
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
-}
-label .req {
-  color: var(--red);
-  font-size: 11px;
-  margin-left: 4px;
-  font-weight: 700;
-}
-input[type=text],
-textarea {
-  width: 100%;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  color: var(--text);
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  font-size: 15px;
-  font-family: inherit;
-  transition: border-color 0.15s, background 0.15s;
-  outline: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
-input[type=text]:focus,
-textarea:focus {
-  border-color: var(--blue);
-  background: var(--bg2);
-}
-input[type=text]::placeholder,
-textarea::placeholder {
-  color: var(--text3);
-  font-size: 13px;
-}
-textarea {
-  min-height: 90px;
-  resize: vertical;
-  line-height: 1.7;
-}
-input.error {
-  border-color: var(--red);
-}
+    .header-text p {
+      font-size: 12px;
+      color: var(--text2);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
 
-/* ── Required section (highlight) ── */
-.section.required {
-  border-color: rgba(240,192,64,0.3);
-  background: linear-gradient(180deg, rgba(240,192,64,0.04), var(--panel) 40%);
-}
+    /* メインコンテンツ */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px 20px;
+    }
 
-/* ── Submit ── */
-.submit-wrap {
-  margin-top: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.btn-submit {
-  width: 100%;
-  background: var(--accent);
-  color: #0a0a0f;
-  border: none;
-  border-radius: var(--radius);
-  padding: 16px 20px;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
-  letter-spacing: 0.5px;
-}
-.btn-submit:hover {
-  background: var(--accent2);
-}
-.btn-submit:active {
-  transform: scale(0.99);
-}
-.btn-submit:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-.submit-note {
-  font-size: 11px;
-  color: var(--text3);
-  text-align: center;
-  line-height: 1.7;
-}
+    /* 注意書きブロック */
+    .notice-block {
+      background: var(--bg3);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
 
-/* ── Status ── */
-.status {
-  font-size: 12px;
-  padding: 10px 14px;
-  border-radius: var(--radius);
-  margin-top: 12px;
-  display: none;
-}
-.status.show { display: block; }
-.status.ok { background: rgba(74,223,154,0.1); color: var(--green); border: 1px solid rgba(74,223,154,0.2); }
-.status.err { background: rgba(255,107,107,0.1); color: var(--red); border: 1px solid rgba(255,107,107,0.2); }
-.status.info { background: rgba(74,158,255,0.1); color: var(--blue); border: 1px solid rgba(74,158,255,0.2); }
+    .notice-block .notice-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-/* ── Spinner ── */
-.spin {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border: 2px solid rgba(10,10,15,.3);
-  border-top-color: #0a0a0f;
-  border-radius: 50%;
-  animation: spin .7s linear infinite;
-  vertical-align: middle;
-  margin-right: 6px;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
+    .notice-block .notice-title::before {
+      content: "！";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      color: #000;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
 
-/* ── Thank you screen ── */
-.thanks {
-  text-align: center;
-  padding: 60px 20px 80px;
-  display: none;
-}
-.thanks.show { display: block; }
-.thanks-icon {
-  font-size: 56px;
-  margin-bottom: 20px;
-  display: inline-block;
-  width: 90px;
-  height: 90px;
-  line-height: 90px;
-  border-radius: 50%;
-  background: rgba(74,223,154,0.1);
-  border: 2px solid rgba(74,223,154,0.3);
-  color: var(--green);
-}
-.thanks h2 {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 12px;
-}
-.thanks p {
-  font-size: 14px;
-  color: var(--text2);
-  line-height: 1.9;
-}
+    .notice-block ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-/* ── Mobile tweak ── */
-@media (max-width: 480px) {
-  .container { padding: 18px 14px 80px; }
-  .title-block h1 { font-size: 19px; }
-  .section { padding: 16px 14px 12px; }
-  .notice { padding: 14px 16px; }
-  input[type=text], textarea { font-size: 16px; padding: 12px; }
-}
-</style>
+    .notice-block li {
+      font-size: 13px;
+      color: var(--text2);
+      padding-left: 14px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .notice-block li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    /* セクション */
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .section-label {
+      font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(240,192,64,0.1);
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    .required-badge {
+      font-size: 11px;
+      color: var(--red);
+      background: rgba(255,107,107,0.1);
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+
+    /* フォームグループ */
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text2);
+      margin-bottom: 6px;
+    }
+
+    .form-group label .req {
+      color: var(--red);
+      margin-left: 4px;
+      font-size: 12px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea {
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      padding: 12px 14px;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      background: var(--bg3);
+    }
+
+    .form-group input[type="text"]::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text3);
+      font-size: 13px;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    /* エラー表示 */
+    .error-msg {
+      font-size: 12px;
+      color: var(--red);
+      margin-top: 5px;
+      display: none;
+    }
+
+    .form-group.has-error input {
+      border-color: var(--red);
+    }
+
+    .form-group.has-error .error-msg {
+      display: block;
+    }
+
+    /* 2カラムグリッド（大画面のみ） */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 送信ボタン */
+    .submit-wrap {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .btn-submit {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 48px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 360px;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.04em;
+    }
+
+    .btn-submit:hover {
+      background: var(--accent2);
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* 送信完了 */
+    .thank-you {
+      display: none;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .thank-you .ty-icon {
+      font-size: 56px;
+      margin-bottom: 20px;
+    }
+
+    .thank-you h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .thank-you p {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+  </style>
 </head>
 <body>
 
-<header class="header">
-  <img class="logo-img" src="https://storage.googleapis.com/production-os-assets/assets/b93cf2a7-61cb-426c-8ecb-3f0b96623481" alt="FIREBUG">
-  <div class="logo-text">タレント愛用品リサーチ</div>
-</header>
-
-<div class="container">
-
-  <!-- フォーム本体 -->
-  <div id="formWrap">
-    <div class="title-block">
+  <!-- ヘッダー -->
+  <header class="header">
+    <img src="https://storage.googleapis.com/production-os-assets/assets/b93cf2a7-61cb-426c-8ecb-3f0b96623481" alt="FIREBUG">
+    <div class="header-text">
       <h1>タレント愛用品ヒアリングシート</h1>
       <p>ご自身の愛用品・日常で使っている商品を具体的な商品名でご記入ください</p>
     </div>
+  </header>
+
+  <div class="container">
 
     <!-- 注意書き -->
-    <div class="notice">
-      <div class="notice-title">記入時のお願い</div>
+    <div class="notice-block">
+      <div class="notice-title">ご記入にあたって</div>
       <ul>
         <li>ジャンルではなく具体的な商品名でご記入ください</li>
-        <li class="ex">例）チョコレート → アルフォート、ブラックサンダー など</li>
+        <li>例）チョコレート → アルフォート、ブラックサンダー など</li>
         <li>知名度・企業規模は問いません。ローカル商品大歓迎です！</li>
       </ul>
     </div>
 
-    <form id="hearingForm" autocomplete="off">
+    <form id="talentForm">
 
       <!-- 必須項目 -->
-      <div class="section required">
-        <div class="section-title">基本情報（必須）</div>
-        <div class="frow">
-          <label>タレント名<span class="req">必須</span></label>
-          <input type="text" name="タレント名" id="f_talent" placeholder="例：山田 太郎" required>
+      <div class="section">
+        <div class="section-header">
+          <span class="section-label">基本情報</span>
+          <span class="required-badge">必須</span>
         </div>
-        <div class="frow">
-          <label>事務所名<span class="req">必須</span></label>
-          <input type="text" name="事務所名" id="f_office" placeholder="例：◯◯プロダクション" required>
+        <div class="form-grid">
+          <div class="form-group" id="group-talent">
+            <label>タレント名<span class="req">*</span></label>
+            <input type="text" name="タレント名" placeholder="例：山田太郎" autocomplete="off">
+            <div class="error-msg">タレント名を入力してください</div>
+          </div>
+          <div class="form-group" id="group-office">
+            <label>事務所名<span class="req">*</span></label>
+            <input type="text" name="事務所名" placeholder="例：〇〇プロダクション" autocomplete="off">
+            <div class="error-msg">事務所名を入力してください</div>
+          </div>
         </div>
       </div>
 
       <!-- ビューティー・ヘルスケア -->
       <div class="section">
-        <div class="section-title">ビューティー・ヘルスケア</div>
-        <div class="frow"><label>歯磨き系（マウスウォッシュ等も）</label><input type="text" name="歯磨き系" placeholder="例：クリニカ、リステリン"></div>
-        <div class="frow"><label>スキンケア</label><input type="text" name="スキンケア" placeholder="例：SK-II、無印良品の化粧水"></div>
-        <div class="frow"><label>ベースメイク</label><input type="text" name="ベースメイク" placeholder="例：エスティローダー ダブルウェア"></div>
-        <div class="frow"><label>コスメ</label><input type="text" name="コスメ" placeholder="例：CHANEL ルージュ ココ"></div>
-        <div class="frow"><label>日焼け止め</label><input type="text" name="日焼け止め" placeholder="例：アネッサ"></div>
-        <div class="frow"><label>薬・漢方</label><input type="text" name="薬・漢方" placeholder="例：ロキソニン、葛根湯"></div>
-        <div class="frow"><label>目薬</label><input type="text" name="目薬" placeholder="例：ロート リセ"></div>
-        <div class="frow"><label>美顔器</label><input type="text" name="美顔器" placeholder="例：ヤーマン、リファ"></div>
-        <div class="frow"><label>サプリ</label><input type="text" name="サプリ" placeholder="例：DHC マルチビタミン"></div>
+        <div class="section-header">
+          <span class="section-label">ビューティー・ヘルスケア</span>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>歯磨き系（マウスウォッシュ等も）</label>
+            <input type="text" name="歯磨き系" placeholder="例：クリニカ、リステリン">
+          </div>
+          <div class="form-group">
+            <label>スキンケア</label>
+            <input type="text" name="スキンケア" placeholder="例：SK-II、無印良品の化粧水">
+          </div>
+          <div class="form-group">
+            <label>ベースメイク</label>
+            <input type="text" name="ベースメイク" placeholder="例：NARS、マキアージュ">
+          </div>
+          <div class="form-group">
+            <label>コスメ</label>
+            <input type="text" name="コスメ" placeholder="例：CANMAKE、エテュセ">
+          </div>
+          <div class="form-group">
+            <label>日焼け止め</label>
+            <input type="text" name="日焼け止め" placeholder="例：アネッサ、ニベアUV">
+          </div>
+          <div class="form-group">
+            <label>薬・漢方</label>
+            <input type="text" name="薬・漢方" placeholder="例：ツムラ、葛根湯">
+          </div>
+          <div class="form-group">
+            <label>目薬</label>
+            <input type="text" name="目薬" placeholder="例：ロートV40、サンテPC">
+          </div>
+          <div class="form-group">
+            <label>美顔器</label>
+            <input type="text" name="美顔器" placeholder="例：ヤーマン、パナソニック">
+          </div>
+          <div class="form-group">
+            <label>サプリ</label>
+            <input type="text" name="サプリ" placeholder="例：ディアナチュラ、DHC">
+          </div>
+        </div>
       </div>
 
       <!-- フード・ドリンク -->
       <div class="section">
-        <div class="section-title">フード・ドリンク</div>
-        <div class="frow"><label>ドリンク</label><input type="text" name="ドリンク" placeholder="例：いろはす、伊右衛門"></div>
-        <div class="frow"><label>調味料</label><input type="text" name="調味料" placeholder="例：キッコーマン醤油、ヤマサ"></div>
-        <div class="frow"><label>冷凍食品</label><input type="text" name="冷凍食品" placeholder="例：ニチレイ、味の素 冷凍餃子"></div>
-        <div class="frow"><label>カップ麺</label><input type="text" name="カップ麺" placeholder="例：日清カップヌードル"></div>
-        <div class="frow"><label>お菓子（洋菓子系）</label><input type="text" name="お菓子（洋菓子系）" placeholder="例：アルフォート、ブラックサンダー"></div>
-        <div class="frow"><label>お菓子（和菓子系）</label><input type="text" name="お菓子（和菓子系）" placeholder="例：たねや、舟和の芋ようかん"></div>
+        <div class="section-header">
+          <span class="section-label">フード・ドリンク</span>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>ノンアルコールドリンク</label>
+            <input type="text" name="ノンアルコールドリンク" placeholder="例：いろはす、伊右衛門">
+          </div>
+          <div class="form-group">
+            <label>アルコールドリンク</label>
+            <input type="text" name="アルコールドリンク" placeholder="例：スーパードライ、吉四六">
+          </div>
+          <div class="form-group">
+            <label>調味料</label>
+            <input type="text" name="調味料" placeholder="例：ヤマサ醤油、マルコメ味噌">
+          </div>
+          <div class="form-group">
+            <label>冷凍食品</label>
+            <input type="text" name="冷凍食品" placeholder="例：マルハニチロ、ニチレイ">
+          </div>
+          <div class="form-group">
+            <label>カップ麺</label>
+            <input type="text" name="カップ麺" placeholder="例：一平ちゃん、どん兵衛">
+          </div>
+          <div class="form-group">
+            <label>お菓子（洋菓子系）</label>
+            <input type="text" name="お菓子（洋菓子系）" placeholder="例：アルフォート、ブラックサンダー">
+          </div>
+          <div class="form-group">
+            <label>お菓子（和菓子系）</label>
+            <input type="text" name="お菓子（和菓子系）" placeholder="例：源氏パイ、柿の種">
+          </div>
+          <div class="form-group">
+            <label>外食チェーン</label>
+            <input type="text" name="外食チェーン" placeholder="例：マック、モス、ケンタッキー">
+          </div>
+          <div class="form-group">
+            <label>宅配チェーン</label>
+            <input type="text" name="宅配チェーン" placeholder="例：ピザーラ、ドミノ、ピザハット">
+          </div>
+        </div>
       </div>
 
       <!-- 日用品・ランドリー -->
       <div class="section">
-        <div class="section-title">日用品・ランドリー</div>
-        <div class="frow"><label>洗剤</label><input type="text" name="洗剤" placeholder="例：アタック、アリエール"></div>
-        <div class="frow"><label>柔軟剤</label><input type="text" name="柔軟剤" placeholder="例：ハミング、レノア"></div>
-        <div class="frow"><label>シャンプー・トリートメント</label><input type="text" name="シャンプー・トリートメント" placeholder="例：BOTANIST、オージュア"></div>
-        <div class="frow"><label>ドライヤー</label><input type="text" name="ドライヤー" placeholder="例：ダイソン、レプロナイザー"></div>
-        <div class="frow"><label>ヘアアイロン</label><input type="text" name="ヘアアイロン" placeholder="例：SALONIA、Refa"></div>
+        <div class="section-header">
+          <span class="section-label">日用品・ランドリー</span>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>洗剤</label>
+            <input type="text" name="洗剤" placeholder="例：アリエール、ボールド">
+          </div>
+          <div class="form-group">
+            <label>柔軟剤</label>
+            <input type="text" name="柔軟剤" placeholder="例：レノア、ダウニー">
+          </div>
+          <div class="form-group">
+            <label>シャンプー・トリートメント・ヘアケア</label>
+            <input type="text" name="シャンプー・トリートメント・ヘアケア" placeholder="例：LUX、パンテーン、ケラスターゼ">
+          </div>
+          <div class="form-group">
+            <label>ドライヤー</label>
+            <input type="text" name="ドライヤー" placeholder="例：ダイソン、パナソニック ナノケア">
+          </div>
+          <div class="form-group">
+            <label>ヘアアイロン</label>
+            <input type="text" name="ヘアアイロン" placeholder="例：クレイツ、Nobby">
+          </div>
+        </div>
       </div>
 
       <!-- EC・サービス -->
       <div class="section">
-        <div class="section-title">EC・サービス</div>
-        <div class="frow"><label>よく使うECサイト</label><input type="text" name="よく使うECサイト" placeholder="例：Amazon、楽天市場"></div>
-        <div class="frow"><label>ふるさと納税</label><input type="text" name="ふるさと納税" placeholder="例：さとふる、楽天ふるさと納税"></div>
-        <div class="frow"><label>使わないものを売るサイト</label><input type="text" name="使わないものを売るサイト" placeholder="例：メルカリ、ラクマ"></div>
-        <div class="frow"><label>旅行サイト</label><input type="text" name="旅行サイト" placeholder="例：じゃらん、Booking.com"></div>
-        <div class="frow"><label>クレジットカード</label><input type="text" name="クレジットカード" placeholder="例：楽天カード、エポスカード"></div>
-        <div class="frow"><label>よく使うアプリ</label><input type="text" name="よく使うアプリ" placeholder="例：Spotify、Notion、PayPay"></div>
+        <div class="section-header">
+          <span class="section-label">EC・サービス</span>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>よく使うECサイト</label>
+            <input type="text" name="よく使うECサイト" placeholder="例：Amazon、楽天、ZOZOTOWN">
+          </div>
+          <div class="form-group">
+            <label>ふるさと納税</label>
+            <input type="text" name="ふるさと納税" placeholder="例：さとふる、ふるなび">
+          </div>
+          <div class="form-group">
+            <label>使わないものを売るサイト</label>
+            <input type="text" name="使わないものを売るサイト" placeholder="例：メルカリ、ヤフオク">
+          </div>
+          <div class="form-group">
+            <label>旅行サイト</label>
+            <input type="text" name="旅行サイト" placeholder="例：じゃらん、楽天トラベル">
+          </div>
+          <div class="form-group">
+            <label>クレジットカード</label>
+            <input type="text" name="クレジットカード" placeholder="例：楽天カード、三井住友カード">
+          </div>
+          <div class="form-group">
+            <label>よく使うアプリ</label>
+            <input type="text" name="よく使うアプリ" placeholder="例：TikTok、Notion、Spotify">
+          </div>
+        </div>
       </div>
 
       <!-- 家電 -->
       <div class="section">
-        <div class="section-title">家電</div>
-        <div class="frow"><label>テレビ</label><input type="text" name="テレビ" placeholder="例：SONY BRAVIA、REGZA"></div>
-        <div class="frow"><label>掃除機</label><input type="text" name="掃除機" placeholder="例：ダイソン、マキタ"></div>
-        <div class="frow"><label>冷蔵庫</label><input type="text" name="冷蔵庫" placeholder="例：パナソニック、日立"></div>
-        <div class="frow"><label>洗濯機</label><input type="text" name="洗濯機" placeholder="例：シャープ、東芝"></div>
-        <div class="frow"><label>乾燥機</label><input type="text" name="乾燥機" placeholder="例：パナソニック ドラム式"></div>
-        <div class="frow"><label>電子レンジ</label><input type="text" name="電子レンジ" placeholder="例：シャープ ヘルシオ"></div>
-        <div class="frow"><label>オーブン</label><input type="text" name="オーブン" placeholder="例：バルミューダ、Panasonic"></div>
-        <div class="frow"><label>エアコン</label><input type="text" name="エアコン" placeholder="例：ダイキン、霧ヶ峰"></div>
-        <div class="frow"><label>体重計</label><input type="text" name="体重計" placeholder="例：タニタ、オムロン"></div>
-        <div class="frow"><label>炊飯器</label><input type="text" name="炊飯器" placeholder="例：象印 炎舞炊き、バーミキュラ"></div>
-        <div class="frow"><label>コーヒーメーカー</label><input type="text" name="コーヒーメーカー" placeholder="例：デロンギ、ネスプレッソ"></div>
-        <div class="frow"><label>ウォーターサーバー</label><input type="text" name="ウォーターサーバー" placeholder="例：プレミアムウォーター"></div>
-        <div class="frow"><label>お掃除ロボット</label><input type="text" name="お掃除ロボット" placeholder="例：ルンバ、ブラーバ"></div>
-        <div class="frow"><label>空気清浄機</label><input type="text" name="空気清浄機" placeholder="例：ダイキン、シャープ プラズマクラスター"></div>
-        <div class="frow"><label>食洗機</label><input type="text" name="食洗機" placeholder="例：パナソニック ビルトイン"></div>
-        <div class="frow"><label>IH</label><input type="text" name="IH" placeholder="例：パナソニック、三菱"></div>
-        <div class="frow"><label>その他家電</label><input type="text" name="その他家電" placeholder="例：バルミューダ トースター"></div>
+        <div class="section-header">
+          <span class="section-label">家電</span>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>テレビ</label>
+            <input type="text" name="テレビ" placeholder="例：SONY BRAVIA、LG">
+          </div>
+          <div class="form-group">
+            <label>掃除機</label>
+            <input type="text" name="掃除機" placeholder="例：ダイソン、マキタ">
+          </div>
+          <div class="form-group">
+            <label>冷蔵庫</label>
+            <input type="text" name="冷蔵庫" placeholder="例：パナソニック、日立">
+          </div>
+          <div class="form-group">
+            <label>洗濯機</label>
+            <input type="text" name="洗濯機" placeholder="例：シャープ、東芝">
+          </div>
+          <div class="form-group">
+            <label>乾燥機</label>
+            <input type="text" name="乾燥機" placeholder="例：乾太くん、パナソニック">
+          </div>
+          <div class="form-group">
+            <label>電子レンジ</label>
+            <input type="text" name="電子レンジ" placeholder="例：シャープ ヘルシオ、バルミューダ">
+          </div>
+          <div class="form-group">
+            <label>オーブン</label>
+            <input type="text" name="オーブン" placeholder="例：デロンギ、パナソニック">
+          </div>
+          <div class="form-group">
+            <label>エアコン</label>
+            <input type="text" name="エアコン" placeholder="例：ダイキン、三菱 霧ヶ峰">
+          </div>
+          <div class="form-group">
+            <label>体重計</label>
+            <input type="text" name="体重計" placeholder="例：タニタ、withings">
+          </div>
+          <div class="form-group">
+            <label>炊飯器</label>
+            <input type="text" name="炊飯器" placeholder="例：象印、タイガー">
+          </div>
+          <div class="form-group">
+            <label>コーヒーメーカー</label>
+            <input type="text" name="コーヒーメーカー" placeholder="例：ネスプレッソ、バルミューダ">
+          </div>
+          <div class="form-group">
+            <label>ウォーターサーバー</label>
+            <input type="text" name="ウォーターサーバー" placeholder="例：プレミアムウォーター、クリクラ">
+          </div>
+          <div class="form-group">
+            <label>お掃除ロボット</label>
+            <input type="text" name="お掃除ロボット" placeholder="例：ルンバ、ブラーバ">
+          </div>
+          <div class="form-group">
+            <label>空気清浄機</label>
+            <input type="text" name="空気清浄機" placeholder="例：ダイキン、バルミューダ">
+          </div>
+          <div class="form-group">
+            <label>食洗機</label>
+            <input type="text" name="食洗機" placeholder="例：パナソニック、Siemens">
+          </div>
+          <div class="form-group">
+            <label>IH</label>
+            <input type="text" name="IH" placeholder="例：パナソニック、三菱">
+          </div>
+          <div class="form-group">
+            <label>その他家電</label>
+            <input type="text" name="その他家電" placeholder="例：ヨーグルトメーカー、ホットクック">
+          </div>
+        </div>
       </div>
 
       <!-- ライフスタイル -->
       <div class="section">
-        <div class="section-title">ライフスタイル</div>
-        <div class="frow"><label>文具</label><input type="text" name="文具" placeholder="例：ジェットストリーム、無印良品"></div>
-        <div class="frow"><label>おすすめしたい便利グッズ</label><input type="text" name="おすすめしたい便利グッズ" placeholder="例：MagSafe対応スマホスタンド"></div>
-        <div class="frow"><label>子供用の製品</label><input type="text" name="子供用の製品" placeholder="例：ピジョン、コンビ"></div>
-        <div class="frow"><label>よく行く（好きな）スーパー</label><input type="text" name="よく行く（好きな）スーパー" placeholder="例：成城石井、オーケーストア"></div>
-        <div class="frow"><label>よく行く（好きな）コンビニ</label><input type="text" name="よく行く（好きな）コンビニ" placeholder="例：セブンイレブン、ローソン"></div>
-        <div class="frow"><label>よく行く（好きな）レジャースポット</label><input type="text" name="よく行く（好きな）レジャースポット" placeholder="例：USJ、箱根温泉"></div>
+        <div class="section-header">
+          <span class="section-label">ライフスタイル</span>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>文具</label>
+            <input type="text" name="文具" placeholder="例：ジェットストリーム、パイロット">
+          </div>
+          <div class="form-group">
+            <label>おすすめしたい便利グッズ</label>
+            <input type="text" name="おすすめしたい便利グッズ" placeholder="例：山崎実業の収納グッズ">
+          </div>
+          <div class="form-group">
+            <label>子供用の製品</label>
+            <input type="text" name="子供用の製品" placeholder="例：コンビ、ピジョン">
+          </div>
+          <div class="form-group">
+            <label>よく行く（好きな）スーパー</label>
+            <input type="text" name="よく行く（好きな）スーパー" placeholder="例：成城石井、ライフ">
+          </div>
+          <div class="form-group">
+            <label>よく行く（好きな）コンビニ</label>
+            <input type="text" name="よく行く（好きな）コンビニ" placeholder="例：ローソン、セブン-イレブン">
+          </div>
+          <div class="form-group">
+            <label>よく行く（好きな）レジャースポット</label>
+            <input type="text" name="よく行く（好きな）レジャースポット" placeholder="例：USJ、富士急ハイランド">
+          </div>
+          <div class="form-group">
+            <label>量販店・ディスカウントストア・雑貨店</label>
+            <input type="text" name="量販店・ディスカウントストア・雑貨店" placeholder="例：ドン・キホーテ、無印良品、カルディ、LOFT、100円ショップ">
+          </div>
+        </div>
       </div>
 
       <!-- 推し活 -->
       <div class="section">
-        <div class="section-title">推し活</div>
-        <div class="frow"><label>推し活（スポーツ）</label><input type="text" name="推し活（スポーツ）" placeholder="例：阪神タイガース、浦和レッズ"></div>
-        <div class="frow"><label>推し活（ミュージシャン、アイドル）</label><input type="text" name="推し活（ミュージシャン、アイドル）" placeholder="例：BTS、Mrs. GREEN APPLE"></div>
-        <div class="frow"><label>推し活（キャラクター）</label><input type="text" name="推し活（キャラクター）" placeholder="例：すみっコぐらし、ちいかわ"></div>
+        <div class="section-header">
+          <span class="section-label">推し活・趣味</span>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>推し活（スポーツ）</label>
+            <input type="text" name="推し活（スポーツ）" placeholder="例：阪神タイガース、レアル・マドリード">
+          </div>
+          <div class="form-group">
+            <label>推し活（ミュージシャン、アイドル）</label>
+            <input type="text" name="推し活（ミュージシャン、アイドル）" placeholder="例：○○グループ、△△さん">
+          </div>
+          <div class="form-group">
+            <label>推し活（キャラクター）</label>
+            <input type="text" name="推し活（キャラクター）" placeholder="例：ちいかわ、スヌーピー">
+          </div>
+          <div class="form-group">
+            <label>趣味</label>
+            <input type="text" name="趣味" placeholder="例：旅行、キャンプ、ゲームなど">
+          </div>
+        </div>
       </div>
 
       <!-- その他 -->
       <div class="section">
-        <div class="section-title">その他</div>
-        <div class="frow">
+        <div class="section-header">
+          <span class="section-label">その他</span>
+        </div>
+        <div class="form-group">
           <label>今後やりたい仕事</label>
-          <textarea name="今後やりたい仕事" rows="4" placeholder="例：ナレーション、料理番組、海外ロケ など、自由にご記入ください"></textarea>
+          <textarea name="今後やりたい仕事" placeholder="ご自由にお書きください。タイアップを希望するブランドや、やってみたい案件のジャンルなど何でも構いません。"></textarea>
         </div>
       </div>
 
-      <!-- 送信 -->
+      <!-- 送信ボタン -->
       <div class="submit-wrap">
-        <button type="submit" class="btn-submit" id="btnSubmit">送信する</button>
-        <div class="submit-note">送信後の修正はできません。内容をご確認のうえ送信してください。</div>
-        <div class="status" id="status"></div>
+        <button type="submit" class="btn-submit" id="submitBtn">送信する</button>
       </div>
+
     </form>
+
+    <!-- 送信完了メッセージ -->
+    <div class="thank-you" id="thankYou">
+      <div class="ty-icon">✅</div>
+      <h2>ご回答ありがとうございました！</h2>
+      <p>内容を確認の上、担当者よりご連絡させていただく場合がございます。<br>引き続きよろしくお願いいたします。</p>
+    </div>
+
   </div>
 
-  <!-- 送信完了 -->
-  <div class="thanks" id="thanksWrap">
-    <div class="thanks-icon">✓</div>
-    <h2>ご回答ありがとうございました！</h2>
-    <p>愛用品のご回答を受け付けました。<br>FIREBUGよりお仕事のご相談の際に活用させていただきます。</p>
-  </div>
+  <script>
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbz1G2xMDYrA8MRCc9r3I_DNLZMMCYNQ58oql4ds_TPEe9FCQxfuGZttx2M7Z8qUidEn/exec";
 
-</div>
+    const form = document.getElementById('talentForm');
+    const thankYou = document.getElementById('thankYou');
+    const submitBtn = document.getElementById('submitBtn');
 
-<script>
-// ===== GAS URL =====
-const GAS_URL = "https://script.google.com/a/macros/firebug.jp/s/AKfycbz1G2xMDYrA8MRCc9r3I_DNLZMMCYNQ58oql4ds_TPEe9FCQxfuGZttx2M7Z8qUidEn/exec";
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
 
-// ===== カテゴリ項目一覧（GASに送信するキー） =====
-const FIELD_KEYS = [
-  "タレント名","事務所名",
-  "歯磨き系","スキンケア","ベースメイク","コスメ","日焼け止め","薬・漢方","目薬","美顔器","サプリ",
-  "ドリンク","調味料","冷凍食品","カップ麺","お菓子（洋菓子系）","お菓子（和菓子系）",
-  "洗剤","柔軟剤","シャンプー・トリートメント","ドライヤー","ヘアアイロン",
-  "よく使うECサイト","ふるさと納税","使わないものを売るサイト","旅行サイト","クレジットカード","よく使うアプリ",
-  "テレビ","掃除機","冷蔵庫","洗濯機","乾燥機","電子レンジ","オーブン","エアコン",
-  "体重計","炊飯器","コーヒーメーカー","ウォーターサーバー","お掃除ロボット","空気清浄機","食洗機","IH","その他家電",
-  "文具","おすすめしたい便利グッズ","子供用の製品",
-  "よく行く（好きな）スーパー","よく行く（好きな）コンビニ","よく行く（好きな）レジャースポット",
-  "推し活（スポーツ）","推し活（ミュージシャン、アイドル）","推し活（キャラクター）",
-  "今後やりたい仕事"
-];
+      // バリデーション
+      let isValid = true;
 
-// ===== Helpers =====
-function showStatus(msg, type) {
-  const s = document.getElementById('status');
-  s.className = 'status show ' + type;
-  s.innerHTML = msg;
-}
+      const talentInput = form.querySelector('input[name="タレント名"]');
+      const officeInput = form.querySelector('input[name="事務所名"]');
+      const groupTalent = document.getElementById('group-talent');
+      const groupOffice = document.getElementById('group-office');
 
-function clearStatus() {
-  const s = document.getElementById('status');
-  s.className = 'status';
-  s.innerHTML = '';
-}
+      groupTalent.classList.remove('has-error');
+      groupOffice.classList.remove('has-error');
 
-// ===== Submit =====
-document.getElementById('hearingForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  clearStatus();
+      if (!talentInput.value.trim()) {
+        groupTalent.classList.add('has-error');
+        isValid = false;
+      }
+      if (!officeInput.value.trim()) {
+        groupOffice.classList.add('has-error');
+        isValid = false;
+      }
 
-  const talent = document.getElementById('f_talent');
-  const office = document.getElementById('f_office');
-  let hasError = false;
+      if (!isValid) {
+        const firstError = form.querySelector('.has-error input');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
 
-  // バリデーション
-  [talent, office].forEach(el => {
-    if (!el.value.trim()) {
-      el.classList.add('error');
-      hasError = true;
-    } else {
-      el.classList.remove('error');
-    }
-  });
+      // データ収集
+      const data = {};
+      form.querySelectorAll('input[name], textarea[name]').forEach(el => {
+        data[el.name] = el.value.trim();
+      });
 
-  if (hasError) {
-    showStatus('タレント名・事務所名は必須項目です。', 'err');
-    (talent.value.trim() ? office : talent).focus();
-    return;
-  }
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中...';
 
-  // GAS URL 未設定チェック
-  if (GAS_URL === "ここにGASのURLを貼る" || !GAS_URL) {
-    showStatus('送信先（GAS URL）が未設定です。管理者にお問い合わせください。', 'err');
-    return;
-  }
+      try {
+        await fetch(GAS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      } catch (err) {
+        // no-corsモードではエラーキャッチできないため無視
+      }
 
-  // データ収集
-  const data = {};
-  FIELD_KEYS.forEach(key => {
-    const input = document.querySelector(`[name="${key}"]`);
-    data[key] = input ? input.value.trim() : '';
-  });
-
-  // 送信
-  const btn = document.getElementById('btnSubmit');
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spin"></span>送信中...';
-  showStatus('送信中です。お待ちください...', 'info');
-
-  try {
-    await fetch(GAS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(data)
+      // 送信完了表示
+      form.style.display = 'none';
+      thankYou.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    // no-corsの場合レスポンスは取得できないが、エラーなく完了すれば成功とみなす
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('thanksWrap').classList.add('show');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } catch (err) {
-    btn.disabled = false;
-    btn.innerHTML = '送信する';
-    showStatus('送信に失敗しました。通信環境をご確認のうえ再度お試しください。', 'err');
-    console.error(err);
-  }
-});
-
-// ===== エラー解除（入力時） =====
-['f_talent', 'f_office'].forEach(id => {
-  document.getElementById(id).addEventListener('input', function() {
-    this.classList.remove('error');
-  });
-});
-</script>
+  </script>
 
 </body>
 </html>
