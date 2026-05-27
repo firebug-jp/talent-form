@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FIREBUG 愛用品リサーチ 管理画面</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
 <style>
 :root {
   --bg: #0a0a0f;
@@ -181,15 +182,14 @@ select option { background: var(--bg3); color: var(--text); }
   border-radius: var(--radius);
   margin-top: 10px;
 }
-.status-ok { background: rgba(74,223,154,0.1); color: var(--green); border: 1px solid rgba(74,223,154,0.2); }
-.status-err { background: rgba(255,107,107,0.1); color: var(--red); border: 1px solid rgba(255,107,107,0.2); }
-.status-info { background: rgba(74,158,255,0.1); color: var(--blue); border: 1px solid rgba(74,158,255,0.2); }
+.status-ok  { background: rgba(74,223,154,0.1); color: var(--green); border: 1px solid rgba(74,223,154,0.2); }
+.status-err { background: rgba(255,107,107,0.1); color: var(--red);   border: 1px solid rgba(255,107,107,0.2); }
+.status-info{ background: rgba(74,158,255,0.1);  color: var(--blue);  border: 1px solid rgba(74,158,255,0.2); }
 
 /* ── Spinner ── */
 .spin {
   display: inline-block;
-  width: 14px;
-  height: 14px;
+  width: 14px; height: 14px;
   border: 2px solid rgba(10,10,15,0.3);
   border-top-color: #0a0a0f;
   border-radius: 50%;
@@ -206,16 +206,8 @@ select option { background: var(--bg3); color: var(--text); }
   gap: 12px;
   margin-bottom: 18px;
 }
-.page-title h1 {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text);
-}
-.page-title .count {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 13px;
-  color: var(--text2);
-}
+.page-title h1 { font-size: 20px; font-weight: 700; color: var(--text); }
+.page-title .count { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--text2); }
 .page-title .count strong { color: var(--accent); font-weight: 700; }
 
 /* ── Filter strip ── */
@@ -236,11 +228,7 @@ select option { background: var(--bg3); color: var(--text); }
   align-items: center;
   gap: 6px;
 }
-.fchip .x {
-  cursor: pointer;
-  font-size: 10px;
-  opacity: 0.7;
-}
+.fchip .x { cursor: pointer; font-size: 10px; opacity: 0.7; }
 .fchip .x:hover { opacity: 1; }
 
 /* ── Cards ── */
@@ -258,10 +246,7 @@ select option { background: var(--bg3); color: var(--text); }
   transition: all 0.15s;
   animation: fadeUp 0.3s ease both;
 }
-.t-card:hover {
-  border-color: var(--border2);
-  transform: translateY(-1px);
-}
+.t-card:hover { border-color: var(--border2); transform: translateY(-1px); }
 .t-card.expanded {
   border-color: var(--accent);
   background: linear-gradient(180deg, rgba(240,192,64,0.04), var(--panel) 50%);
@@ -273,16 +258,8 @@ select option { background: var(--bg3); color: var(--text); }
   margin-bottom: 8px;
 }
 .t-card-body { flex: 1; min-width: 0; }
-.t-name {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 3px;
-}
-.t-office {
-  font-size: 12px;
-  color: var(--text2);
-}
+.t-name { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.t-office { font-size: 12px; color: var(--text2); }
 .t-meta {
   font-size: 10.5px;
   color: var(--text3);
@@ -325,9 +302,7 @@ select option { background: var(--bg3); color: var(--text); }
   border-top: 1px solid var(--border);
 }
 .t-card.expanded .t-detail { display: block; }
-.detail-cat {
-  margin-bottom: 14px;
-}
+.detail-cat { margin-bottom: 14px; }
 .detail-cat-title {
   font-size: 11px;
   font-weight: 700;
@@ -340,8 +315,7 @@ select option { background: var(--bg3); color: var(--text); }
 .detail-cat-title::before {
   content: '';
   display: block;
-  width: 3px;
-  height: 11px;
+  width: 3px; height: 11px;
   background: var(--accent);
   border-radius: 2px;
 }
@@ -356,14 +330,8 @@ select option { background: var(--bg3); color: var(--text); }
 }
 .detail-item:last-child { border-bottom: none; }
 .detail-item .k { color: var(--text2); }
-.detail-item .v {
-  color: var(--text);
-  word-break: break-word;
-}
-.detail-item .v.empty {
-  color: var(--text3);
-  font-style: italic;
-}
+.detail-item .v { color: var(--text); word-break: break-word; }
+.detail-item .v.empty { color: var(--text3); font-style: italic; }
 .detail-item .v mark {
   background: rgba(240,192,64,0.25);
   color: var(--accent);
@@ -372,35 +340,126 @@ select option { background: var(--bg3); color: var(--text); }
 }
 
 /* ── Empty / loading ── */
-.empty-state {
-  text-align: center;
-  padding: 80px 20px;
-  color: var(--text2);
-}
+.empty-state { text-align: center; padding: 80px 20px; color: var(--text2); }
 .empty-icon { font-size: 40px; margin-bottom: 14px; }
 .empty-state h3 { font-size: 15px; font-weight: 500; margin-bottom: 6px; color: var(--text); }
 .empty-state p { font-size: 12.5px; color: var(--text3); line-height: 1.9; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: none; }
+  to   { opacity: 1; transform: none; }
 }
 
 /* ── Search box ── */
-.search-box {
-  position: relative;
-}
-.search-box input {
-  padding-left: 32px;
-}
+.search-box { position: relative; }
+.search-box input { padding-left: 32px; }
 .search-box::before {
   content: '🔍';
   position: absolute;
-  left: 10px;
-  top: 50%;
+  left: 10px; top: 50%;
   transform: translateY(-50%);
   font-size: 11px;
   opacity: 0.6;
+}
+
+/* ── パワポ出力セクション ── */
+#pptxSection .pptx-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#pptxSection .btn-secondary {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.78);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-box {
+  background: var(--panel);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  width: min(480px, 100%);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.modal-header h3 { font-size: 15px; font-weight: 600; color: var(--text); }
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text2);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.modal-close:hover { background: var(--bg3); color: var(--text); }
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.cross-talent-list {
+  overflow-y: auto;
+  padding: 8px 18px;
+  flex: 1;
+}
+.cross-talent-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text);
+  user-select: none;
+}
+.cross-talent-item:last-child { border-bottom: none; }
+.cross-talent-item:hover { color: var(--accent); }
+.cross-talent-item small {
+  color: var(--text2);
+  font-size: 11px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.cross-talent-item input[type=checkbox] {
+  accent-color: var(--accent);
+  width: 15px; height: 15px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.modal-footer {
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 /* ── Responsive ── */
@@ -424,109 +483,138 @@ select option { background: var(--bg3); color: var(--text); }
 
 <div class="layout">
 
-<!-- ===== SIDEBAR ===== -->
-<aside class="sidebar">
-  <!-- データ読み込み -->
-  <div class="load-box">
-    <div class="load-box-icon">📥</div>
-    <h3>スプレッドシート連携</h3>
-    <p>GAS経由でスプレッドシートから<br>最新の回答データを取得します</p>
-    <button class="btn btn-primary btn-full" id="btnLoad" onclick="loadData()">データを読み込む</button>
-  </div>
-  <div id="loadStatus"></div>
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
 
-  <!-- 検索・絞り込み -->
-  <div class="sb-section">
-    <div class="sb-label">タレント名で検索</div>
-    <div class="form-row search-box">
-      <input type="text" id="f_talent_name" placeholder="例：山田太郎" oninput="applyFilter()">
+    <!-- データ読み込み -->
+    <div class="load-box">
+      <div class="load-box-icon">📥</div>
+      <h3>スプレッドシート連携</h3>
+      <p>GAS経由でスプレッドシートから<br>最新の回答データを取得します</p>
+      <button class="btn btn-primary btn-full" id="btnLoad" onclick="loadData()">データを読み込む</button>
     </div>
-  </div>
+    <div id="loadStatus"></div>
 
-  <div class="sb-section">
-    <div class="sb-label">カテゴリで絞り込み</div>
-    <div class="form-row">
-      <select id="f_category" onchange="applyFilter()">
-        <option value="">指定なし（全カテゴリ）</option>
-        <optgroup label="ビューティー・ヘルスケア">
-          <option>歯磨き系</option><option>スキンケア</option><option>ベースメイク</option><option>コスメ</option>
-          <option>日焼け止め</option><option>薬・漢方</option><option>目薬</option><option>美顔器</option><option>サプリ</option>
-        </optgroup>
-        <optgroup label="フード・ドリンク">
-          <option>ドリンク</option><option>調味料</option><option>冷凍食品</option><option>カップ麺</option>
-          <option>お菓子（洋菓子系）</option><option>お菓子（和菓子系）</option>
-        </optgroup>
-        <optgroup label="日用品・ランドリー">
-          <option>洗剤</option><option>柔軟剤</option><option>シャンプー・トリートメント</option>
-          <option>ドライヤー</option><option>ヘアアイロン</option>
-        </optgroup>
-        <optgroup label="EC・サービス">
-          <option>よく使うECサイト</option><option>ふるさと納税</option><option>使わないものを売るサイト</option>
-          <option>旅行サイト</option><option>クレジットカード</option><option>よく使うアプリ</option>
-        </optgroup>
-        <optgroup label="家電">
-          <option>テレビ</option><option>掃除機</option><option>冷蔵庫</option><option>洗濯機</option>
-          <option>乾燥機</option><option>電子レンジ</option><option>オーブン</option><option>エアコン</option>
-          <option>体重計</option><option>炊飯器</option><option>コーヒーメーカー</option>
-          <option>ウォーターサーバー</option><option>お掃除ロボット</option><option>空気清浄機</option>
-          <option>食洗機</option><option>IH</option><option>その他家電</option>
-        </optgroup>
-        <optgroup label="ライフスタイル">
-          <option>文具</option><option>おすすめしたい便利グッズ</option><option>子供用の製品</option>
-          <option>よく行く（好きな）スーパー</option><option>よく行く（好きな）コンビニ</option>
-          <option>よく行く（好きな）レジャースポット</option>
-        </optgroup>
-        <optgroup label="推し活">
-          <option>推し活（スポーツ）</option><option>推し活（ミュージシャン、アイドル）</option>
-          <option>推し活（キャラクター）</option>
-        </optgroup>
-        <optgroup label="その他">
-          <option>今後やりたい仕事</option>
-        </optgroup>
-      </select>
-    </div>
-  </div>
-
-  <div class="sb-section">
-    <div class="sb-label">キーワード検索</div>
-    <div class="form-row">
-      <input type="text" id="f_keyword" placeholder="商品名・ブランド名など" oninput="applyFilter()">
-      <div style="font-size:10px;color:var(--text3);margin-top:4px;line-height:1.6;">
-        全回答からフリーワードで検索<br>（カテゴリ指定時はそのカテゴリ内のみ）
+    <!-- 検索・絞り込み -->
+    <div class="sb-section">
+      <div class="sb-label">タレント名で検索</div>
+      <div class="form-row search-box">
+        <input type="text" id="f_talent_name" placeholder="例：山田太郎" oninput="applyFilter()">
       </div>
     </div>
-  </div>
 
-  <div class="sb-section">
-    <button class="btn btn-secondary btn-full btn-sm" onclick="resetFilter()">条件をリセット</button>
-  </div>
-</aside>
+    <div class="sb-section">
+      <div class="sb-label">カテゴリで絞り込み</div>
+      <div class="form-row">
+        <select id="f_category" onchange="applyFilter()">
+          <option value="">指定なし（全カテゴリ）</option>
+          <optgroup label="ビューティー・ヘルスケア">
+            <option>歯磨き系</option><option>スキンケア</option><option>ベースメイク</option><option>コスメ</option>
+            <option>日焼け止め</option><option>薬・漢方</option><option>目薬</option><option>美顔器</option><option>サプリ</option>
+          </optgroup>
+          <optgroup label="フード・ドリンク">
+            <option>ドリンク</option><option>調味料</option><option>冷凍食品</option><option>カップ麺</option>
+            <option>お菓子（洋菓子系）</option><option>お菓子（和菓子系）</option>
+          </optgroup>
+          <optgroup label="日用品・ランドリー">
+            <option>洗剤</option><option>柔軟剤</option><option>シャンプー・トリートメント</option>
+            <option>ドライヤー</option><option>ヘアアイロン</option>
+          </optgroup>
+          <optgroup label="EC・サービス">
+            <option>よく使うECサイト</option><option>ふるさと納税</option><option>使わないものを売るサイト</option>
+            <option>旅行サイト</option><option>クレジットカード</option><option>よく使うアプリ</option>
+          </optgroup>
+          <optgroup label="家電">
+            <option>テレビ</option><option>掃除機</option><option>冷蔵庫</option><option>洗濯機</option>
+            <option>乾燥機</option><option>電子レンジ</option><option>オーブン</option><option>エアコン</option>
+            <option>体重計</option><option>炊飯器</option><option>コーヒーメーカー</option>
+            <option>ウォーターサーバー</option><option>お掃除ロボット</option><option>空気清浄機</option>
+            <option>食洗機</option><option>IH</option><option>その他家電</option>
+          </optgroup>
+          <optgroup label="ライフスタイル">
+            <option>文具</option><option>おすすめしたい便利グッズ</option><option>子供用の製品</option>
+            <option>よく行く（好きな）スーパー</option><option>よく行く（好きな）コンビニ</option>
+            <option>よく行く（好きな）レジャースポット</option>
+          </optgroup>
+          <optgroup label="推し活">
+            <option>推し活（スポーツ）</option><option>推し活（ミュージシャン、アイドル）</option>
+            <option>推し活（キャラクター）</option>
+          </optgroup>
+          <optgroup label="その他">
+            <option>今後やりたい仕事</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
 
-<!-- ===== MAIN ===== -->
-<main class="main">
-  <div class="page-title">
-    <h1>回答一覧</h1>
-    <div class="count" id="resultCount">— 件</div>
-  </div>
+    <div class="sb-section">
+      <div class="sb-label">キーワード検索</div>
+      <div class="form-row">
+        <input type="text" id="f_keyword" placeholder="商品名・ブランド名など" oninput="applyFilter()">
+        <div style="font-size:10px;color:var(--text3);margin-top:4px;line-height:1.6;">
+          全回答からフリーワードで検索<br>（カテゴリ指定時はそのカテゴリ内のみ）
+        </div>
+      </div>
+    </div>
 
-  <div class="filter-strip" id="filterStrip"></div>
+    <div class="sb-section">
+      <button class="btn btn-secondary btn-full btn-sm" onclick="resetFilter()">条件をリセット</button>
+    </div>
 
-  <div id="cardWrap">
-    <div class="empty-state">
-      <div class="empty-icon">📋</div>
-      <h3>まずはデータを読み込んでください</h3>
-      <p>左の「データを読み込む」ボタンを押すと<br>スプレッドシートの回答データが表示されます</p>
+    <!-- ===== パワポ出力 ===== -->
+    <div class="sb-section" id="pptxSection" style="display:none;">
+      <div class="sb-label">パワポ出力</div>
+      <div class="pptx-btns">
+        <button class="btn btn-secondary btn-full btn-sm" onclick="exportTalentCards(this)">📊 タレント別カード出力</button>
+        <button class="btn btn-secondary btn-full btn-sm" onclick="exportCategoryList(this)">📋 カテゴリ別一覧出力</button>
+        <button class="btn btn-secondary btn-full btn-sm" onclick="openCrossModal()">🗂 クロス表出力</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+    <div class="page-title">
+      <h1>回答一覧</h1>
+      <div class="count" id="resultCount">— 件</div>
+    </div>
+    <div class="filter-strip" id="filterStrip"></div>
+    <div id="cardWrap">
+      <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <h3>まずはデータを読み込んでください</h3>
+        <p>左の「データを読み込む」ボタンを押すと<br>スプレッドシートの回答データが表示されます</p>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<!-- ===== クロス表 タレント選択 モーダル ===== -->
+<div id="crossModal" class="modal-overlay" style="display:none;" onclick="handleModalOverlayClick(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>クロス表：タレント選択</h3>
+      <button class="modal-close" onclick="closeCrossModal()">✕</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary btn-sm" onclick="selectAllCross(true)">全選択</button>
+      <button class="btn btn-secondary btn-sm" onclick="selectAllCross(false)">全解除</button>
+    </div>
+    <div id="crossTalentList" class="cross-talent-list"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeCrossModal()">キャンセル</button>
+      <button id="btnExportCross" class="btn btn-primary" onclick="exportCrossTable()">出力する</button>
     </div>
   </div>
-</main>
-
 </div>
 
 <script>
 // ===== GAS URL =====
 const GAS_URL = "https://script.google.com/a/macros/firebug.jp/s/AKfycbz1G2xMDYrA8MRCc9r3I_DNLZMMCYNQ58oql4ds_TPEe9FCQxfuGZttx2M7Z8qUidEn/exec";
 
-// ===== カテゴリ定義 =====
+// ===== カテゴリ定義（管理画面表示用） =====
 const CATEGORIES = [
   { name: 'ビューティー・ヘルスケア', items: ['歯磨き系','スキンケア','ベースメイク','コスメ','日焼け止め','薬・漢方','目薬','美顔器','サプリ'] },
   { name: 'フード・ドリンク', items: ['ドリンク','調味料','冷凍食品','カップ麺','お菓子（洋菓子系）','お菓子（和菓子系）'] },
@@ -537,6 +625,20 @@ const CATEGORIES = [
   { name: '推し活', items: ['推し活（スポーツ）','推し活（ミュージシャン、アイドル）','推し活（キャラクター）'] },
   { name: 'その他', items: ['今後やりたい仕事'] }
 ];
+
+// ===== カテゴリ定義（パワポ出力用） =====
+const PPTX_CATS = {
+  "ビューティー・ヘルスケア": ["歯磨き系","スキンケア","ベースメイク","コスメ","日焼け止め","薬・漢方","目薬","美顔器","サプリ"],
+  "フード・ドリンク": ["ノンアルコールドリンク","アルコールドリンク","調味料","冷凍食品","カップ麺","お菓子（洋菓子系）","お菓子（和菓子系）","外食チェーン","宅配チェーン"],
+  "日用品・ランドリー": ["洗剤","柔軟剤","シャンプー・トリートメント・ヘアケア","ドライヤー","ヘアアイロン"],
+  "EC・サービス": ["よく使うECサイト","ふるさと納税","使わないものを売るサイト","旅行サイト","クレジットカード","よく使うアプリ"],
+  "家電": ["テレビ","掃除機","冷蔵庫","洗濯機","乾燥機","電子レンジ","オーブン","エアコン","体重計","炊飯器","コーヒーメーカー","ウォーターサーバー","お掃除ロボット","空気清浄機","食洗機","IH","その他家電"],
+  "ライフスタイル": ["文具","おすすめしたい便利グッズ","子供用の製品","よく行く（好きな）スーパー","よく行く（好きな）コンビニ","よく行く（好きな）レジャースポット","量販店・ディスカウントストア・雑貨店"],
+  "推し活・趣味": ["推し活（スポーツ）","推し活（ミュージシャン、アイドル）","推し活（キャラクター）","趣味"],
+  "その他": ["今後やりたい仕事"]
+};
+
+const LOGO_URL = 'https://storage.googleapis.com/production-os-assets/assets/b93cf2a7-61cb-426c-8ecb-3f0b96623481';
 
 // ===== STATE =====
 let allData = [];
@@ -551,14 +653,17 @@ function clearLoadStatus() {
 }
 function escapeHtml(s) {
   return String(s == null ? '' : s)
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 function highlight(text, keyword) {
   if (!keyword || !text) return escapeHtml(text);
   const safe = escapeHtml(text);
   const safeKw = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return safe.replace(new RegExp(safeKw, 'gi'), m => `<mark>${m}</mark>`);
+}
+function todayStr() {
+  return new Date().toISOString().slice(0,10).replace(/-/g,'');
 }
 
 // ===== Load data =====
@@ -579,15 +684,14 @@ async function loadData() {
     const res = await fetch(GAS_URL, { method: 'GET' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-
     if (!Array.isArray(data)) {
       throw new Error('GASからの応答が想定形式ではありません');
     }
-
     allData = data;
     document.getElementById('dataBadge').classList.add('active');
     setLoadStatus(`✓ ${allData.length}件の回答を読み込みました`, 'ok');
     applyFilter();
+    showPptxSection();
   } catch (err) {
     console.error(err);
     setLoadStatus('読み込みに失敗しました：' + err.message, 'err');
@@ -600,30 +704,25 @@ async function loadData() {
 // ===== Filter =====
 function applyFilter() {
   const nameQ = document.getElementById('f_talent_name').value.trim().toLowerCase();
-  const cat = document.getElementById('f_category').value;
-  const kw = document.getElementById('f_keyword').value.trim().toLowerCase();
+  const cat   = document.getElementById('f_category').value;
+  const kw    = document.getElementById('f_keyword').value.trim().toLowerCase();
 
   filteredData = allData.filter(row => {
-    // タレント名検索
     if (nameQ) {
       const name = String(row['タレント名'] || '').toLowerCase();
       if (!name.includes(nameQ)) return false;
     }
-
-    // カテゴリ × キーワード
     if (cat) {
       const val = String(row[cat] || '').toLowerCase();
       if (!val.trim()) return false;
       if (kw && !val.includes(kw)) return false;
     } else if (kw) {
-      // カテゴリ未指定の場合は全項目検索
       const found = Object.keys(row).some(k => {
         if (k === 'タイムスタンプ') return false;
         return String(row[k] || '').toLowerCase().includes(kw);
       });
       if (!found) return false;
     }
-
     return true;
   });
 
@@ -640,19 +739,19 @@ function resetFilter() {
 
 function renderFilterStrip() {
   const nameQ = document.getElementById('f_talent_name').value.trim();
-  const cat = document.getElementById('f_category').value;
-  const kw = document.getElementById('f_keyword').value.trim();
+  const cat   = document.getElementById('f_category').value;
+  const kw    = document.getElementById('f_keyword').value.trim();
   const strip = document.getElementById('filterStrip');
   const chips = [];
   if (nameQ) chips.push(`<span class="fchip">タレント: ${escapeHtml(nameQ)} <span class="x" onclick="document.getElementById('f_talent_name').value='';applyFilter()">✕</span></span>`);
-  if (cat) chips.push(`<span class="fchip">カテゴリ: ${escapeHtml(cat)} <span class="x" onclick="document.getElementById('f_category').value='';applyFilter()">✕</span></span>`);
-  if (kw) chips.push(`<span class="fchip">キーワード: ${escapeHtml(kw)} <span class="x" onclick="document.getElementById('f_keyword').value='';applyFilter()">✕</span></span>`);
+  if (cat)   chips.push(`<span class="fchip">カテゴリ: ${escapeHtml(cat)} <span class="x" onclick="document.getElementById('f_category').value='';applyFilter()">✕</span></span>`);
+  if (kw)    chips.push(`<span class="fchip">キーワード: ${escapeHtml(kw)} <span class="x" onclick="document.getElementById('f_keyword').value='';applyFilter()">✕</span></span>`);
   strip.innerHTML = chips.join('');
 }
 
 // ===== Render =====
 function renderCards() {
-  const wrap = document.getElementById('cardWrap');
+  const wrap    = document.getElementById('cardWrap');
   const countEl = document.getElementById('resultCount');
   countEl.innerHTML = `<strong>${filteredData.length}</strong> 件`;
 
@@ -664,7 +763,6 @@ function renderCards() {
     </div>`;
     return;
   }
-
   if (filteredData.length === 0) {
     wrap.innerHTML = `<div class="empty-state">
       <div class="empty-icon">🔍</div>
@@ -674,25 +772,21 @@ function renderCards() {
     return;
   }
 
-  const kw = document.getElementById('f_keyword').value.trim().toLowerCase();
+  const kw  = document.getElementById('f_keyword').value.trim().toLowerCase();
   const cat = document.getElementById('f_category').value;
-
   wrap.innerHTML = `<div class="card-grid">${filteredData.map((row, idx) => renderCard(row, idx, kw, cat)).join('')}</div>`;
 }
 
 function renderCard(row, idx, kw, cat) {
-  const name = row['タレント名'] || '（名前未記入）';
-  const office = row['事務所名'] || '（事務所未記入）';
-  const ts = row['タイムスタンプ'] || '';
+  const name   = row['タレント名'] || '（名前未記入）';
+  const office = row['事務所名']   || '（事務所未記入）';
+  const ts     = row['タイムスタンプ'] || '';
 
-  // プレビュータグ：データが入っているカテゴリ名を最大4つ表示
   const filledCats = CATEGORIES.filter(c => c.items.some(it => row[it] && String(row[it]).trim()));
-  const previewTags = filledCats.slice(0, 4).map(c => `<span class="t-preview-tag">${escapeHtml(c.name)}</span>`).join('');
+  const previewTags = filledCats.slice(0,4).map(c => `<span class="t-preview-tag">${escapeHtml(c.name)}</span>`).join('');
   const moreCount = filledCats.length - 4;
 
-  // 詳細部分
   const detailHtml = CATEGORIES.map(c => {
-    // カテゴリフィルタが指定されていれば、そのカテゴリのみ展開時にハイライト
     const items = c.items.map(it => {
       const v = row[it];
       const hasVal = v && String(v).trim();
@@ -732,7 +826,349 @@ function toggleCard(idx) {
   const card = document.getElementById('card-' + idx);
   if (card) card.classList.toggle('expanded');
 }
-</script>
 
+// ===================================================
+// ===== PPTX出力機能
+// ===================================================
+
+function showPptxSection() {
+  document.getElementById('pptxSection').style.display = '';
+}
+
+// ===== パターンA：タレント別カード出力 =====
+async function exportTalentCards(btn) {
+  if (!allData.length) return;
+  const origText = btn.textContent;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin spin-blue"></span> 生成中...';
+
+  try {
+    const pptx = new PptxGenJS();
+    pptx.layout = 'LAYOUT_WIDE'; // 13.33 x 7.5 in
+
+    for (const row of allData) {
+      const slide = pptx.addSlide();
+      slide.background = { color: '0A0A0F' };
+
+      // ロゴ（右上）
+      slide.addImage({ path: LOGO_URL, x: 11.8, y: 0.15, w: 1.3, h: 0.43 });
+
+      // タレント名
+      slide.addText(String(row['タレント名'] || ''), {
+        x: 0.4, y: 0.18, w: 11.0, h: 0.58,
+        fontSize: 28, bold: true, color: 'F0F0F5'
+      });
+
+      // 事務所名
+      slide.addText(String(row['事務所名'] || ''), {
+        x: 0.4, y: 0.8, w: 11.0, h: 0.36,
+        fontSize: 16, color: '9090A8'
+      });
+
+      // 回答日時
+      slide.addText(String(row['タイムスタンプ'] || ''), {
+        x: 0.4, y: 1.17, w: 11.0, h: 0.28,
+        fontSize: 12, color: '9090A8'
+      });
+
+      // ゴールドの区切り線
+      slide.addShape(pptx.ShapeType.line, {
+        x: 0.4, y: 1.52, w: 12.5, h: 0,
+        line: { color: 'F0C040', width: 1.5 }
+      });
+
+      // 回答があるカテゴリのみ収集
+      const filled = [];
+      for (const [catName, items] of Object.entries(PPTX_CATS)) {
+        const filledItems = items
+          .filter(it => row[it] && String(row[it]).trim())
+          .map(it => ({ key: it, val: String(row[it]) }));
+        if (filledItems.length > 0) filled.push({ name: catName, items: filledItems });
+      }
+
+      // 2カラムで配置
+      const half = Math.ceil(filled.length / 2);
+      const colCats = [filled.slice(0, half), filled.slice(half)];
+      const colX    = [0.4, 6.85];
+
+      colCats.forEach((cats, ci) => {
+        let y = 1.68;
+        const cx = colX[ci];
+        for (const cat of cats) {
+          if (y > 7.1) break;
+          slide.addText(cat.name, {
+            x: cx, y: y, w: 6.2, h: 0.28,
+            fontSize: 13, bold: true, color: 'F0C040'
+          });
+          y += 0.31;
+          for (const item of cat.items) {
+            if (y > 7.1) break;
+            slide.addText(`${item.key}：${item.val}`, {
+              x: cx + 0.12, y: y, w: 6.0, h: 0.27,
+              fontSize: 11, color: 'F0F0F5', wrap: true
+            });
+            y += 0.29;
+          }
+          y += 0.08;
+        }
+      });
+    }
+
+    await pptx.writeFile({ fileName: `FIREBUG_タレント別カード_${todayStr()}.pptx` });
+  } catch (e) {
+    console.error(e);
+    alert('パワポ生成に失敗しました：' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = origText;
+  }
+}
+
+// ===== パターンB：カテゴリ別タレント・商材一覧出力 =====
+async function exportCategoryList(btn) {
+  if (!allData.length) return;
+  const origText = btn.textContent;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin spin-blue"></span> 生成中...';
+
+  try {
+    const pptx = new PptxGenJS();
+    pptx.layout = 'LAYOUT_WIDE';
+
+    // 表紙スライド
+    const cover = pptx.addSlide();
+    cover.background = { color: '0A0A0F' };
+    cover.addImage({ path: LOGO_URL, x: 5.5, y: 1.1, w: 2.3, h: 0.77 });
+    cover.addText('FIREBUG タレント愛用品リサーチ', {
+      x: 0.5, y: 2.7, w: 12.3, h: 1.3,
+      fontSize: 34, bold: true, color: 'F0C040', align: 'center'
+    });
+    cover.addText(`${allData.length}名分のデータ`, {
+      x: 0.5, y: 4.1, w: 12.3, h: 0.55,
+      fontSize: 18, color: '9090A8', align: 'center'
+    });
+    cover.addShape(pptx.ShapeType.line, {
+      x: 2.5, y: 4.8, w: 8.3, h: 0,
+      line: { color: 'F0C040', width: 1 }
+    });
+
+    // カテゴリ別スライド（カテゴリ1つ＝1スライド）
+    for (const [catName, items] of Object.entries(PPTX_CATS)) {
+      const slide = pptx.addSlide();
+      slide.background = { color: '0A0A0F' };
+      slide.addImage({ path: LOGO_URL, x: 11.8, y: 0.15, w: 1.3, h: 0.43 });
+
+      // カテゴリ名
+      slide.addText(catName, {
+        x: 0.4, y: 0.2, w: 11.0, h: 0.55,
+        fontSize: 24, bold: true, color: 'F0C040'
+      });
+
+      // 区切り線
+      slide.addShape(pptx.ShapeType.line, {
+        x: 0.4, y: 0.82, w: 12.5, h: 0,
+        line: { color: 'F0C040', width: 1.5 }
+      });
+
+      let y = 1.02;
+
+      for (const item of items) {
+        // 回答したタレント一覧
+        const entries = allData
+          .filter(row => row[item] && String(row[item]).trim())
+          .map(row => ({ talent: String(row['タレント名'] || ''), val: String(row[item]) }));
+        if (entries.length === 0) continue;
+
+        if (y > 7.1) break;
+
+        // 項目名
+        slide.addText(item, {
+          x: 0.4, y: y, w: 12.5, h: 0.28,
+          fontSize: 13, bold: true, color: 'F0F0F5'
+        });
+        y += 0.3;
+
+        for (const entry of entries) {
+          if (y > 7.1) break;
+          slide.addText([
+            { text: entry.talent + '　', options: { color: 'F0C040', bold: false } },
+            { text: entry.val, options: { color: 'F0F0F5' } }
+          ], {
+            x: 0.65, y: y, w: 12.0, h: 0.26,
+            fontSize: 11, wrap: true
+          });
+          y += 0.27;
+        }
+        y += 0.1;
+      }
+    }
+
+    await pptx.writeFile({ fileName: `FIREBUG_カテゴリ別一覧_${todayStr()}.pptx` });
+  } catch (e) {
+    console.error(e);
+    alert('パワポ生成に失敗しました：' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = origText;
+  }
+}
+
+// ===== パターンC：クロス表 モーダル操作 =====
+function openCrossModal() {
+  if (!allData.length) return;
+  const list = document.getElementById('crossTalentList');
+  list.innerHTML = allData.map((row, i) => `
+    <label class="cross-talent-item">
+      <input type="checkbox" class="cross-cb" value="${i}" checked>
+      <span>${escapeHtml(row['タレント名'] || '（不明）')}</span>
+      <small>${escapeHtml(row['事務所名'] || '')}</small>
+    </label>
+  `).join('');
+  document.getElementById('crossModal').style.display = 'flex';
+}
+
+function closeCrossModal() {
+  document.getElementById('crossModal').style.display = 'none';
+}
+
+function handleModalOverlayClick(e) {
+  if (e.target === document.getElementById('crossModal')) closeCrossModal();
+}
+
+function selectAllCross(checked) {
+  document.querySelectorAll('.cross-cb').forEach(cb => cb.checked = checked);
+}
+
+// ===== パターンC：クロス表 出力 =====
+async function exportCrossTable() {
+  const selected = Array.from(document.querySelectorAll('.cross-cb:checked'))
+    .map(cb => allData[parseInt(cb.value)])
+    .filter(Boolean);
+
+  if (selected.length === 0) {
+    alert('タレントを1名以上選択してください');
+    return;
+  }
+
+  closeCrossModal();
+
+  const btn = document.getElementById('btnExportCross');
+  btn.disabled = true;
+  btn.textContent = '生成中...';
+
+  try {
+    const pptx = new PptxGenJS();
+    pptx.layout = 'LAYOUT_WIDE';
+
+    // 表紙
+    const cover = pptx.addSlide();
+    cover.background = { color: '0A0A0F' };
+    cover.addImage({ path: LOGO_URL, x: 5.5, y: 1.1, w: 2.3, h: 0.77 });
+    cover.addText('FIREBUG タレント愛用品 クロス表', {
+      x: 0.5, y: 2.7, w: 12.3, h: 1.3,
+      fontSize: 34, bold: true, color: 'F0C040', align: 'center'
+    });
+    cover.addText(`${selected.length}名`, {
+      x: 0.5, y: 4.1, w: 12.3, h: 0.55,
+      fontSize: 18, color: '9090A8', align: 'center'
+    });
+    cover.addShape(pptx.ShapeType.line, {
+      x: 2.5, y: 4.8, w: 8.3, h: 0,
+      line: { color: 'F0C040', width: 1 }
+    });
+
+    // タレントを最大8名ずつに分けてスライド生成
+    const TALENTS_PER_SLIDE = 8;
+    const ROWS_PER_SLIDE = 28;
+    const talentGroups = [];
+    for (let i = 0; i < selected.length; i += TALENTS_PER_SLIDE) {
+      talentGroups.push(selected.slice(i, i + TALENTS_PER_SLIDE));
+    }
+
+    for (const talentGroup of talentGroups) {
+      const numTalents = talentGroup.length;
+      const totalCols  = 1 + numTalents;
+      const firstColW  = 2.8;
+      const talentColW = parseFloat(((12.7 - firstColW) / numTalents).toFixed(3));
+      const colWidths  = [firstColW, ...Array(numTalents).fill(talentColW)];
+
+      // テーブル行を構築
+      const allRows = [];
+
+      // ヘッダー行
+      allRows.push([
+        { text: 'カテゴリ / 項目', options: {
+            bold: true, color: '000000', fill: { color: 'F0C040' },
+            fontSize: 11, align: 'center', valign: 'middle'
+        }},
+        ...talentGroup.map(row => ({
+          text: String(row['タレント名'] || ''),
+          options: {
+            bold: true, color: '000000', fill: { color: 'F0C040' },
+            fontSize: 11, align: 'center', valign: 'middle'
+          }
+        }))
+      ]);
+
+      for (const [catName, items] of Object.entries(PPTX_CATS)) {
+        // カテゴリ行
+        allRows.push([{
+          text: catName,
+          options: {
+            bold: true, color: 'F0C040', fill: { color: '1A1A24' },
+            fontSize: 10, colspan: totalCols, valign: 'middle'
+          }
+        }]);
+
+        for (const item of items) {
+          allRows.push([
+            { text: item, options: {
+                color: '9090A8', fill: { color: '16161F' },
+                fontSize: 10, valign: 'middle'
+            }},
+            ...talentGroup.map(row => ({
+              text: (row[item] && String(row[item]).trim()) ? String(row[item]) : 'ー',
+              options: {
+                color: 'F0F0F5', fill: { color: '16161F' },
+                fontSize: 9, valign: 'middle', wrap: true
+              }
+            }))
+          ]);
+        }
+      }
+
+      // ROWS_PER_SLIDE行ごとにスライドを分割（ヘッダー行は各スライドに繰り返す）
+      const header = allRows[0];
+      const dataRows = allRows.slice(1);
+
+      for (let i = 0; i < dataRows.length; i += ROWS_PER_SLIDE) {
+        const chunk = [header, ...dataRows.slice(i, i + ROWS_PER_SLIDE)];
+        const slide = pptx.addSlide();
+        slide.background = { color: '0A0A0F' };
+        slide.addImage({ path: LOGO_URL, x: 11.8, y: 0.05, w: 1.3, h: 0.43 });
+        slide.addText('タレント愛用品 クロス表', {
+          x: 0.3, y: 0.08, w: 8, h: 0.38,
+          fontSize: 14, bold: true, color: 'F0C040'
+        });
+        slide.addTable(chunk, {
+          x: 0.3, y: 0.58, w: 12.7,
+          colW: colWidths,
+          border: { color: '2A2A38', pt: 0.5 },
+          autoPage: false,
+          rowH: 0.22
+        });
+      }
+    }
+
+    await pptx.writeFile({ fileName: `FIREBUG_クロス表_${todayStr()}.pptx` });
+  } catch (e) {
+    console.error(e);
+    alert('パワポ生成に失敗しました：' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '出力する';
+  }
+}
+</script>
 </body>
 </html>
